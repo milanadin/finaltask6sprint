@@ -13,6 +13,7 @@ import (
 )
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	http.ServeFile(w, r, "../index.html")
 }
 
@@ -55,5 +56,6 @@ func UploadHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
-	fmt.Fprintf(w, "Файл успешно конвертирован!\n\nРезультат:\n%s", result)
+	fmt.Fprintf(w, "Файл успешно конвертирован!\n\nИсходный текст:\n%s\n\nРезультат:\n%s", string(data), result)
+
 }
